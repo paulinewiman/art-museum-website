@@ -1,0 +1,2032 @@
+/*************************************************************
+main.css
+
+Webbutveckling 1 HT22 
+Uppgift 4a - Projekt 
+Skapad av Pauline Wiman 
+*************************************************************/
+
+/*************************************************************
+INNEHÅLL 
+
+A. Custom properties (CSS-variabler) 
+B. CSS reset
+
+STYLING FÖR DELAR SOM FÖREKOMMER PÅ ALLA SIDOR
+C.1 Generell styling 
+C.2 Global meny
+C.3 Breadcrumbs
+C.4 Prenumerera på nyhetsbrev-sektion
+C.5 Sidfot
+
+STYLING FÖR ENSKILDA SIDOR
+1. index.html
+
+2. besok-oss.html
+
+3. utstallningar.html
+
+4. hitta-hit.html
+
+5. om-museet.html
+
+6. kontakt.html
+
+************************************************************
+*/
+
+/* 
+************************************************************
+A. CUSTOM PROPERTIES 
+CSS-variabler med värden som förekommer flera gånger i koden. 
+Används för att minska kodrepition och snabbt kunna ändra ett 
+attribut på webbplatsen. 
+************************************************************
+*/
+:root {
+    /* Padding */
+    --website-padding-left: 10vw;
+    --padding-left-mobile: 1.5em;
+
+    /* Färger */
+    --color-white: #ffffff;
+    --color-black: #161616;
+    --color-hover-black: #292929;
+    --color-hover-link: #505050;
+    --color-hover-border: #686868;
+    --color-background: #F5F5F5;
+    --color-blue: #DCE6EA;
+    --color-turqoise: #C3E1E1;
+    --color-yellow:  #eaebcb;
+    --color-green: #0c7d70;
+    --color-green-hover: #388f7f;
+    --color-border: #D8D8D8;
+    --color-boxshadow: rgba(123, 123, 123, 25%);
+    --color-form-border: #9f9f9f;
+
+    /* Dekorativ linje */
+    --top-border: 0.675em solid var(--color-green);
+
+    /* Typsnitt */
+    --font-family-serif: 'Lora', serif;
+    --font-family-sans: 'Raleway', sans-serif;
+
+    /* Tjocklek på rubriker*/
+    --font-weight-h: 600;
+}
+
+/* 
+************************************************************
+B. CSS reset
+Nollställer attribut för att ta bort webbläsares 
+förinställda värden
+************************************************************
+*/
+html, body, button, div, span, h1, h2, h3, h4, p, a, img, input,
+ol, ul, li, fieldset, form, label, table, tr, td, aside, figure, 
+figcaption, footer, header, nav {
+margin: 0;
+padding: 0;
+border: 0;
+border-radius: 0;
+font-size: 100%;
+font: inherit; 
+vertical-align: baseline;
+}
+
+/* Tar bort förinställda värden för submit-knapp*/
+input[type="submit"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* 
+Box-sizing sätts till border-box för att enklare 
+räkna ut storleken på element. 
+*/
+html, *, *:before, *:after {
+    box-sizing: border-box;
+}
+
+/* 
+************************************************************
+C.1 Generell styling
+Generell styling för hela webbplatsen
+************************************************************
+*/
+
+body {
+    background-color: var(--color-background);
+    color: var(--color-black);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    padding: 0;
+}
+
+main {
+    margin: 2.5em 0 3.5em;
+    width: 100%;
+    padding: 0 var(--website-padding-left);
+}
+
+h1, h2, h3, h4 {   
+    font-family: var(--font-family-sans);
+    font-weight: var(--font-weight-h);
+}
+
+/* MEDIA QUERIES för responsivitet */
+@media(max-width: 70em) {
+    main {
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/* För skärmar bredare än 1600px */
+@media(min-width: 100em){
+    body {
+       width: 80%;
+       margin: 0 auto;
+    } 
+}
+
+@media(min-width: 140em) {
+    header, footer, .breadcrumbs {
+        padding: 0 10vw;
+    }
+
+    main, #breadcrumbs{
+        padding: 0 20vw;
+    }
+}
+
+@media(min-width: 200em) {
+    header, footer, .breadcrumbs {
+        padding: 0 20vw;
+    }
+
+    main, #breadcrumbs{
+        padding: 0 30vw;
+    }
+
+}
+
+/* 
+************************************************************
+C.2                    GLOBAL MENY
+************************************************************
+*/
+
+header {
+    background-color: var(--color-white);
+    box-shadow: 0px 2px 4px var(--color-boxshadow);
+
+    width: 100%;
+    font-family: var(--font-family-sans);
+}
+
+header span {
+    text-transform: uppercase; /* Gör alla bokstäver till versaler*/
+    font-family: var(--font-family-sans);
+}
+
+header li {
+    list-style: none;
+}
+
+header a {
+    text-decoration: none; /* Tar bort linjen under länkar */
+    color: var(--color-black);
+    font-size: 1rem;
+}
+
+header a:hover {
+    border-bottom: 1px solid var(--color-hover-border);
+}
+
+.primary-nav {
+    min-height: 5em;
+
+    /* Flex används för att få alla länkar på samma rad */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em var(--website-padding-left);
+}
+
+#logo {
+    font-family: var(--font-family-serif);
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 1.7rem;
+    letter-spacing: 3.5px; /* Mellanrummet mellan varje bokstav */
+}
+
+#logo:hover {
+    border-bottom: none;
+}
+
+.menu-button {
+    display: none;
+    color: var(--color-black);
+}
+
+.menu-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.9em; /* Gap är avståndet mellan varje flex-item */
+}
+
+.active-link {
+    /* Länken för sidan som användaren är inne på får ett annat utseende än övriga länkar för att sticka ut och berätta för användaren vart den är */
+    font-weight: 500;
+    color: var(--color-green);
+}
+
+.active-link:hover {
+    border-bottom: none;
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 70em) {
+
+    header {
+        box-shadow: none;
+        position: fixed; /* Gör så att menyn följer med vid scrollning */
+    }
+
+    header a:hover {
+        border-bottom: none;
+    }
+
+    .primary-nav {
+        flex-direction: column; /* Gör så att menylänkarna hamnar ovanpå varandra */
+        width: 100%;
+        padding: 0;
+    }
+
+    .top-nav {
+        /* Gör så att logotyp och menyknapp hamnar på samma rad */
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        padding: 1em var(--padding-left-mobile);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    #logo {
+        font-size: 1.4rem;
+        letter-spacing: 2.5px;
+    }
+
+    .menu-button {
+        cursor: pointer;
+        border: 1px solid var(--color-border);
+        background-color: var(--color-white);
+        padding: 0.8em 1.4em;
+        display: inline-flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+        border-radius: 50px;
+        gap: 5px;
+    }
+
+    .menu-button span:first-child {
+        /* Flyttar meny-texten i meny-knappen */
+        margin-top: 1px;
+        margin-left: 2px;
+    }
+
+    .menu-button:hover {
+        background-color: var(--color-background);
+    }
+
+    span.close-icon {
+        display: none;
+    }
+
+    /* Stäng-ikonen syns bara när användaren aktiverat den 
+    (genom att klicka på meny-knappen */
+    span.close-icon.active {
+        display: inline;
+    }
+
+    /* Hamburgar-ikonen döljs när användaren klickat på menyknappen */
+    span.hamburger-icon.active {
+        display: none;
+    }
+
+    .menu-bar {
+        background-color: var(--color-background);
+        width: 100%;
+        display: none;
+        gap: 0;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-bar.active {
+        display: block;
+    }
+
+    .nav-item {
+        padding: 1em 0;
+        width: 100%;
+        border-bottom: 1px solid var(--color-border);
+    }
+}
+
+@media (max-width: 25em) {
+    #logo {
+        font-size: 1.2rem;
+    }
+}
+
+/* 
+************************************************************
+C.3                     BREADCRUMBS
+************************************************************
+*/
+
+.breadcrumbs {
+    background-color: var(--color-white);
+    box-shadow: 0px 2px 4px var(--color-boxshadow);
+    border-top: 1px solid var(--color-border);
+
+    width: 100%;
+    font-family: var(--font-family-sans);
+    font-size: 0.9375rem;
+    margin-bottom: 2em;
+}
+
+#breadcrumbs {
+    padding: 0.6em var(--website-padding-left);
+}
+
+#breadcrumbs ol {
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 0.7em;
+}
+
+/* Lägger till tecknet '/' mellan länkarna */
+.breadcrumb:last-child:before {
+    content: '/';
+    padding-right: 0.7em;
+}
+
+#breadcrumbs a {
+    text-decoration: none;
+    color: var(--color-black);
+}
+
+#breadcrumbs .start-link {
+    color: var(--color-green);
+    text-decoration: underline;
+}
+
+#breadcrumbs .start-link:hover {
+    color: var(--color-green-hover);
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+
+    #breadcrumbs {
+        padding: 0;
+    }
+    
+    #breadcrumbs ol {
+        padding: 6.2em var(--padding-left-mobile) 0.7em;
+    }
+
+    .breadcrumbs {
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+}
+
+/* 
+************************************************************
+C.4          PRENUMERERA PÅ NYHETSBREV-sektion
+************************************************************
+*/
+
+.news-letter {
+    padding: 0 var(--website-padding-left) 5em;
+    width: 100%;
+    background-color: var(--color-yellow);
+    text-align: center;
+}
+
+.news-letter h3 {
+    font-size: 2rem;
+    padding: 1.25em 0 0.8em;
+    line-height: 1.3;
+}
+
+.news-letter ul {
+    list-style: none;
+}
+
+/* Gör så att elementen hamnar på samma rad */
+.news-letter li {
+    display: inline; 
+}
+
+/* Gör så att det första li-elementet i klassen tar upp en egen rad */
+.news-letter li:first-child {
+    display: block;
+    margin-bottom: 1.5em;
+}
+
+.news-letter label {
+    font-family: var(--font-family-serif);
+    line-height: 1.2;
+}
+
+.news-letter input {
+    font-family: var(--font-family-sans);
+    border: none;
+    border-radius: 0;
+    font-size: 0.9rem;
+}
+
+.news-letter input[type='checkbox'] {
+    margin-right: 0.5em;
+    padding: 0.7em;
+    width: 1.1em;
+    height: 1.1em;
+}
+
+.news-letter input[type='email'] {
+    min-width: 40%;
+    margin-right: 0.5em;
+    margin-bottom: 1.5em;
+    padding: 0.6em 1em;
+}
+
+.news-letter input[type='submit'] {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-weight: 500;
+    padding: 0.6em 2em;
+    border-radius: 0;
+    border: none;
+    min-width: 15%;
+}
+
+.news-letter input[type='submit']:hover {
+    background-color: var(--color-hover-black);
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+    .news-letter input[type='email'] {
+        min-width: 60%;
+        margin-right: 0.5em;
+    }
+}
+
+@media(max-width: 40em) {
+    .news-letter input[type='email'] {
+        min-width: 90%;
+        margin-right: 0.5em;
+    }
+
+    .news-letter h3 {
+        font-size: 1.7rem;
+    }
+}
+
+/* 
+************************************************************
+C.5                      SIDFOT
+************************************************************
+*/
+
+footer {
+    width: 100%;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-family: var(--font-family-serif);
+}
+
+footer a {
+    color: var(--color-white);
+    font-family: var(--font-family-sans);
+    font-size: 1rem;
+}
+
+footer h2 {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    margin-bottom: 1.2em;
+}
+
+footer p {
+    font-size: 1.125rem;
+    max-width: 20ch;
+    margin-bottom: 1em;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    padding: 5em var(--website-padding-left) 2em;
+    width: 100%;
+    border-bottom: 1px solid var(--color-white);
+    margin-bottom: 0.6em;
+}
+
+.footer-container ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    list-style-type: none;
+}
+
+#footer-logo {
+    font-family: var(--font-family-serif);
+    font-weight: 500;
+    letter-spacing: 2px;
+    font-size: 1.7rem;
+    text-decoration: none;
+}
+
+#tertiary-nav {
+    margin-top: 1.5em;
+}
+
+#footer-item2 ul {
+    gap: 0.35em;
+    margin-bottom: 2em;
+}
+
+.footer-contact-links a{
+    font-family: var(--font-family-serif);
+}
+
+.footer-social-links {
+   padding-top: 1.5em;
+}
+
+.footer-social-links a {
+    font-size: 0.925rem;
+}
+
+.social-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.copyright-credit {
+    font-family: var(--font-family-sans);
+    text-align: center;
+    padding: 0.3em 0;
+}
+
+.credits {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+    padding: 0.4em 0 1em;
+}
+
+.credits a {
+    font-size: 1rem;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 50em) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2.5em;
+        padding: 3em 0;
+    }
+
+    .footer-container a {
+        font-size: 1.1rem;
+    }
+
+    #footer-item2 ul {
+        margin-bottom: 0;
+    }
+
+    .social-link {
+        justify-content: center;
+        text-align: left;
+    }
+
+    .social-links {
+        padding-top: 0;
+    }
+
+    .social-link a {
+        font-size: 1rem;
+    }
+
+    .credits {
+        flex-direction: column;
+    }
+
+}
+
+/* 
+************************************************************
+1.                      index.html
+************************************************************
+*/
+
+/* 
+Denna div är bara synlig för mindre skärmar och
+används för att skapa mellanrum mellan menyn och 
+huvudinnehållet när menyn är fixerad
+*/
+.mobile-space-divider {
+    display: none;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+
+    .mobile-space-divider {
+        display: block;
+        margin-bottom: 2.9em;
+        width: 100%;
+        padding: 1.25em 0;
+    }
+}
+
+/* 
+1.1 HERO-SECTION (Den översta delen på sidan)
+******************************
+*/
+
+.hero-section1 {
+    /* Sätter bakgrunden till en bild */
+    background-color: var(--color-white);
+    background-size: cover; 
+    background-image: url("images/bild4.jpg");
+    background-position: center; 
+    margin-bottom: 2em;
+    width: 100%;
+
+    border-top: var(--top-border);
+}
+
+.hero-section1-content  {
+    min-height: 30em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.hero-text1 {
+    background-color: #FAFAFA;
+    line-height: 1.3;
+    padding: 1.5em 5em 1.5em 2em;
+    margin: 4.5em;
+}
+
+.hero-section1 h1 {
+    font-size: 2.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.hero-section1 span {
+    font-family: var(--font-family-sans);
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 40em) {
+
+    .hero-section1 {
+        min-height: 23em;
+    }
+
+    .hero-section1-content {
+        min-height: 23em;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .hero-text1 {
+        text-align: center;
+        margin: 0.8em 0.8em 2.6em;
+        padding: 1.5em 2.2em;
+    }
+
+    .hero-section1 h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section1 span {
+        font-size: 0.875rem;
+    }
+
+}
+
+@media(max-width: 25em) {
+
+    .hero-section1 h1 {
+        font-size: 1.6rem;
+    }
+}
+
+/* 
+1.2 Besöksinformation (med öppettider och priser)
+******************************
+*/
+
+.visiting-information1 {
+    width: 100%;
+
+    font-family: var(--font-family-serif);
+    font-size: 1.1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 3em;
+}
+
+.visiting-information1 ul {
+    list-style: none;
+}
+
+.visiting-information1 h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5em;
+}
+
+.visiting-information1 li {
+    margin-bottom: 0.2em;
+}
+
+.visiting-information1 a {
+    display: block;
+    margin-top: 1em;
+    color: var(--color-black);
+}
+
+.visiting-information1 a:hover {
+    color: var(--color-hover-link);
+}
+
+.visiting-information1 td {
+    padding-right: 3.2em;
+    padding-bottom: 0.3em;
+}
+
+.vi-item {
+    width: 50%;
+    padding: 3em 4em 5em;
+}
+
+.opening-hours1 {
+    background-color: var(--color-turqoise);
+}
+
+.prices1 {
+    background-color: var(--color-blue);
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 75em) {
+    .visiting-information1 td {
+        padding-right: 2em;
+    }
+
+    .visiting-information1 {
+        font-size: 1rem;
+    }
+}
+
+@media(max-width: 70em) {
+    .visiting-information1 {
+        padding: 0;
+        gap: 1em;
+    }
+}
+
+@media(max-width: 65em) {
+    .visiting-information1 td {
+        padding-right: 0.8em;
+    }
+
+    .vi-item {
+        padding-left: 2.5em;
+    }
+}
+
+@media(max-width: 60em) {
+    .visiting-information1 {
+        padding: 1em;
+        gap: 1em;
+    }
+
+    .visiting-information1 h2 {
+        font-size: 1.7rem;
+    }
+
+    .hero-section1 {
+        margin-bottom: 0;
+    }
+
+    .vi-item {
+        width: 100%;
+    }
+
+    .prices1, .opening-hours1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media(max-width: 50em) {
+    .visiting-information1 {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/* 
+1.3 Kommande event, "på gång" på muséet 
+******************************
+*/
+
+.upcoming-events1 {
+    width: 100%;
+    padding-top: 2em;
+}
+
+.upcoming-events1 h2 {
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 1em;
+}
+
+.events-container1 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2.5em;
+}
+
+.card {
+    width: 33%;
+    font-family: var(--font-family-serif);
+    background-color: var(--color-white);
+    box-shadow: 0px 2px 8px rgba(147, 147, 147, 25%);
+
+    border-top: var(--top-border);
+}
+
+.card-text {
+    padding: 0.5em 3em 3em 1.5em;
+    font-size: 0.975rem;
+}
+
+.card span {
+    text-transform: uppercase;
+    font-family: var(--font-family-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+
+    .upcoming-events1 {
+        padding: 2em;
+    }
+}
+
+@media(max-width: 57em) {
+    
+    .events-container1 {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card{
+        width: 40%;
+    }
+}
+
+@media(max-width: 48em) {
+    
+    .events-container1 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card{
+        width: 80%;
+    }
+
+    .upcoming-events1 h2 {
+        font-size: 1.7rem;
+    }
+}
+
+@media(max-width: 32em) {
+
+    .card{
+        width: 100%;
+    }
+
+    .card h3 {
+        font-size: 1.3rem;
+    }
+
+    .card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* 
+1.4 Hitta muséet på kartan
+******************************
+*/
+
+.map1 {
+    width: 100%;
+    margin-top: 2em;
+    text-align: center;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    justify-content: center;
+
+    font-family: var(--font-family-serif);
+    font-size: 1.1rem;
+}
+
+.map1 img {
+    box-shadow: 0px 2px 4px var(--color-boxshadow);
+}
+
+.map1 h2 {
+    font-size: 2rem;
+}
+
+.map1 p {
+    max-width: 60ch;
+}
+
+.map1 a {
+    color: var(--color-black);
+    margin-bottom: 1em;
+}
+
+.map1 a:hover {
+    color: var(--color-hover-link);
+}
+
+.map-text {
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+    .map1 {
+        margin-top: 0;
+        padding-bottom: 2em;
+    }
+}
+
+@media(max-width: 40em) {
+    .map1 h2{
+        font-size: 1.7rem;
+    }
+
+    .map1 {
+        font-size: 0.975rem;
+    }
+
+    .map1 p {
+        padding: 0 0.6em;
+    }
+}
+
+/* 
+************************************************************
+2.                    besok-oss.html
+************************************************************
+*/
+
+/* 
+2.1 HERO-SECTION 
+******************************
+*/
+
+.hero-section2 {
+    border-top: var(--top-border);
+
+    background-color: var(--color-white);
+    background-size: cover;
+    background-image: url("images/bild6.jpg");
+    background-position: center; 
+    width: 100%;
+}
+
+.hero-section2-content {
+    /*Ska minst vara 30em lång*/
+    min-height: 30em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.hero-text-2 {
+    background-color: #FAFAFA;
+    line-height: 1.3;
+    padding: 1.5em 5em 1.7em 2em;
+    margin: 4.5em;
+}
+
+.hero-section2 h1 {
+    font-size: 2.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+.hero-section2 p {
+    font-family: var(--font-family-serif);
+    font-size: 1.1rem;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 40em) {
+
+    .hero-section2 {
+        background-position: center bottom; 
+    }
+
+    .hero-section2-content {
+        min-height: 20em;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+
+    .hero-text-2 {
+        margin: 0.8em 0.8em 1.3em;
+        padding: 1.5em 2.2em 2em 1.7em;
+    }
+
+    .hero-section2 h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section2 p {
+        font-size: 1rem;
+    }
+}
+
+@media(max-width: 25em) {
+
+    .hero-section2 h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* 
+2.2 Besöksinformation
+******************************
+*/
+
+.visiting-information2 {
+    margin-top: 2em;
+    padding: 3em 5em 5em;
+
+    width: 100%;
+
+    background-color: var(--color-blue);
+    font-family: var(--font-family-serif);
+}
+
+.visiting-information2 h2 {
+    font-size: 2rem;
+    padding: 0.5em 0 0.3em;
+}
+
+.visiting-information2 h3 {
+    font-size: 1.3rem;
+    margin-top: 1em;
+}
+
+.visiting-information2 td {
+    padding-right: 1em;
+}
+
+.visiting-information2 p {
+    /*Ska vara max 40 tecken bred*/
+    max-width: 40ch;
+}
+
+.info-container-2 {
+    max-width: 45em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    column-gap: 3.5em;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+    .visiting-information2 {
+        margin: 0;
+    }
+}
+
+@media(max-width: 50em) {
+
+    .visiting-information2 {
+        margin: 0;
+        padding: 2em 2em 4em;
+    }
+
+    .info-container-2 {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+
+    .vs-item2 {
+        width: 100%;
+    }
+}
+
+/* 
+2.3 Restauranginfo (Information om muséets restaurang)
+******************************
+*/
+
+.restaurant-info2 {
+    border-top: var(--top-border);
+
+    margin-top: 2em;
+    width: 100%;
+    font-family: var(--font-family-serif);
+}
+
+.restaurant-container {
+    display: flex;
+    flex-direction: row;
+}
+
+/*Bilden på mat*/
+#restaurant-item-2-1 {
+    background-color: var(--color-white);
+    background-size: cover;
+    background-image: url("images/bild7.jpg");
+    background-position: center;
+    width: 100%;
+    height: 25em;
+}
+
+#restaurant-item-2-2 {
+    background-color: var(--color-turqoise);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 0 6em;
+    width: 100%;
+}
+
+#restaurant-item-2-2 h2 {
+    font-size: 2rem;
+    margin-bottom: 0.3em;
+    line-height: 1.2;
+}
+
+#restaurant-item-2-2 p {
+    max-width: 40ch;
+}
+
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+
+    .restaurant-info2 {
+        margin: 0;
+    }
+}
+
+@media(max-width: 60em) {
+
+    #restaurant-item-2-2 h2 {
+        font-size: 1.7rem;
+        padding: 1em 0 0.2em;
+    }
+
+    #restaurant-item-2-2 p {
+        padding-bottom: 2em;
+    }
+
+}
+
+@media(max-width: 53em) {
+
+    #restaurant-item-2-2 {
+        padding: 2em 4em;
+    }
+
+}
+
+@media(max-width: 40em) {
+
+    .restaurant-container {
+        flex-direction: column;
+    }
+
+    #restaurant-item-2-2 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 3em 2em;
+    }
+
+}
+
+/* 
+************************************************************
+3.                  utstallningar.html
+************************************************************
+*/
+
+/* 
+3.1 HERO-SECTION 
+******************************
+*/
+
+.hero-section3 {
+    border-top: var(--top-border);
+
+    background-color: var(--color-blue);
+    width: 100%;
+    text-align: center;
+}
+
+.hero-section3-content {
+    /* Centrerar innehållet */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5em 3em;
+}
+
+.hero-section3 h1 {
+    font-size: 2.5rem;
+}
+
+.hero-section3 p {
+    font-family: var(--font-family-serif);
+    max-width: 50ch;
+    padding: 0.5em 0 2em;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 40em) {
+
+    .hero-section3-content {
+        padding: 4em 2em;
+    }
+
+    .hero-section3 h1 {
+        font-size: 2rem;
+    }
+
+}
+
+/* 
+3.2, 3.3 Pågående och kommande utställningar 
+******************************
+*/
+
+.current-exhibitions3, .coming-exhibitions3 {
+    margin-top: 3em;
+    width: 100%;
+}
+
+.coming-exhibitions3 {
+    margin-bottom: 3em;
+}
+
+.current-exhibitions3 h2, .coming-exhibitions3 h2 {
+    font-size: 2rem;
+    padding-bottom: 0.7em;
+}
+
+.current-exhibitions-container-3, .coming-exhibitions-container-3 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4em;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+
+    .current-exhibitions3, .coming-exhibitions3 {
+        padding: 2em 2em 1em;
+    }
+
+    .current-exhibitions3, .coming-exhibitions3 {
+        margin-top: 0;
+    }
+}
+
+@media(max-width: 57em) {
+    
+    .current-exhibitions-container-3, .coming-exhibitions-container-3 {
+        /* Gör så att flex-items hamnar på nästa rad när skärmen blir mindre*/
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 2em;
+    }
+
+    .current-exhibitions3 h2, .coming-exhibitions3 h2 {
+        font-size: 2rem;
+    }
+
+}
+
+/* 
+************************************************************
+4.                  hitta-hit.html
+************************************************************
+*/
+
+/* 
+4.1 HERO-SECTION 
+******************************
+*/
+
+.hero-section4 {
+    border-top: var(--top-border);
+
+    background-color: var(--color-white);
+    background-size: cover;
+    background-image: url("images/bild14.jpg");
+    background-position: center right; 
+    min-height: 23em;
+    width: 100%;
+    text-align: center;
+}
+
+.hero-section4-content {
+    min-height: 23em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-text-4 {
+    background-color: #FAFAFA;
+    padding: 1.5em 5em;
+}
+
+.hero-section4 h1 {
+    font-size: 2.5rem;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 40em) {
+
+    .hero-section4 {
+        min-height: 15em;
+        background-position: center;
+    }
+
+    .hero-section4-content {
+        min-height: 15em;
+    }
+
+    .hero-section4 h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-text-4 {
+        padding: 1em 2em;
+    }
+}
+
+@media(max-width: 25em) {
+
+    .hero-section4 h1 {
+        font-size: 1.4rem;
+    }
+}
+
+/* 
+4.2 Information om resvägar/ hur man hittar till muséet
+******************************
+*/
+
+.traveling-info4 {
+    width: 100%;
+    margin: 2em 0;
+    padding: 4em 5em 6em;
+    background-color: var(--color-blue);
+    font-family: var(--font-family-serif);
+}
+
+.traveling-info4 h2 {
+    font-size: 2rem;
+    margin-bottom: 1em;
+    line-height: 1.3;
+}
+
+.traveling-info4 h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5em;
+    margin-top: 1.5em;
+    line-height: 1.3;
+}
+
+.traveling-info4 h4 {
+    font-size: 1.1rem;
+    margin-top: 0.5em;
+}
+
+.traveling-info4 p {
+    max-width: 50ch;
+    padding-bottom: 0.5em;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+    .traveling-info4 {
+        margin: 0;
+        padding: 3em 2em 4em;
+    }
+
+    .traveling-info4 h2{
+        padding: 0;
+        margin: 0;
+    }
+
+}
+
+@media(max-width: 35em) {
+
+    .traveling-info4 h2{
+        font-size: 1.7rem;
+    }
+
+    .traveling-info4 h3{
+        font-size: 1.3rem;
+    }
+
+}
+
+/* 
+************************************************************
+5.                  om-museet.html
+************************************************************
+*/
+
+/* 
+5.1 HERO-SECTION 
+******************************
+*/
+
+.hero-section5{
+    border-top: var(--top-border);
+
+    background-color: var(--color-blue);
+    width: 100%;
+    text-align: center;
+}
+
+.hero-section5-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5em 3em;
+}
+
+.hero-section5 h1 {
+    font-size: 2.5rem;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 40em) {
+
+    .hero-section5 h1 {
+        font-size: 2rem;
+    }
+}
+
+/* 
+5.2 Information om muséet och en aside
+******************************
+*/
+
+.content-container-5 {
+    margin-top: 3em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4em;
+
+    font-family: var(--font-family-serif);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+aside {
+    border-top: var(--top-border);
+
+    width: 25%;
+    background-color: var(--color-white);
+    box-shadow: 0px 2px 4px var(--color-boxshadow);
+}
+
+.aside-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2em 2em 3em;
+}
+
+aside li {
+    list-style-type: "-";
+    padding-left: 0.5em;
+    margin: 1em 0;
+    max-width: 25ch;
+}
+
+aside ul {
+    padding-left: 0.5em;
+}
+
+aside h2 {
+    font-size: 1.5rem;
+}
+
+.about-museum5 h2 {
+    font-size: 2rem;
+    margin-bottom: 0.3em;
+}
+
+.history5 h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.3em;
+}
+
+.about-museum5 p, .history5 p {
+    margin-bottom: 1em;
+    max-width: 60ch;
+}
+
+#ingress-5 {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    max-width: 50ch;
+}
+
+figure {
+    margin: 2em 0 3em;
+    text-align: center;
+    width: 90%;
+}
+
+figcaption {
+    padding-top: 0.5em;
+
+    color: var(--color-black);
+    font-weight: 400;
+    font-size: 0.975rem;
+    font-style: italic; /* Kursiverar text */
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 76.875em) {
+    aside h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media(max-width: 70em) {
+    .content-container-5 {
+        padding: 0 4em;
+    }
+}
+
+@media(max-width: 66em) {
+
+    aside {
+        width: 40%;
+    }
+}
+
+@media(max-width: 55em) {
+    .content-container-5 {
+        flex-direction: column;
+        gap: 1em;
+        margin-bottom: 5em;
+        padding: 0 2em;
+    }
+
+    figure {
+        width: 100%;
+    }
+
+    aside {
+        width: 70%;
+    }
+
+    aside li {
+        max-width: 30ch;
+    }
+
+    .aside-text {
+        padding-left: 2.5em;
+    }
+
+    .about-museum5 h2 {
+        font-size: 1.7rem;
+    }
+
+    .history5 h3 {
+        font-size: 1.4rem;
+    }
+}
+
+@media(max-width: 30em) {
+
+    aside {
+        width: 100%;
+    }
+}
+
+/* 
+************************************************************
+6.                     kontakt.html
+************************************************************
+*/
+
+/* 
+6.1 HERO-SECTION 
+******************************
+*/
+
+.hero-section6 {
+    border-top: var(--top-border);
+
+    background-color: var(--color-white);
+    width: 100%;
+    text-align: center;
+}
+
+.hero-section6-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5em 3em;
+}
+
+.hero-section6 h1 {
+    font-size: 2.5rem;
+}
+
+.hero-section6 p {
+    font-family: var(--font-family-serif);
+    max-width: 50ch;
+    padding: 0.5em 0 1em;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 40em) {
+
+    .hero-section6-content {
+        padding: 4em 2em;
+    }
+
+    .hero-section6 h1 {
+        font-size: 2rem;
+    }
+
+    .hero-section6 p {
+        font-size: 1rem;
+    }
+}
+
+/* 
+6.2 Kontaktuppgifter
+******************************
+*/
+
+.contact-info6 {
+    width: 100%;
+    margin: 2em 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2.5em;
+
+    font-family: var(--font-family-serif);
+}
+
+.c-item6 {
+    min-height: 30em;
+    background-color: var(--color-turqoise);
+}
+
+.contact-text-6 {
+    padding: 4em 3em 3em;
+    width: 60%;
+    line-height: 1.7;
+}
+
+/* Bilden på telefonen */
+.contact-img-6 {
+    width: 40%;
+    background-color: var(--color-white);
+    background-size: cover;
+    background-image: url("images/bild17.jpg");
+    background-position: center;
+}
+
+.contact-info6 h2 {
+    font-size: 2rem;
+}
+
+.contact-info6 h3 {
+    font-size: 1.4rem;
+}
+
+.ct-container-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    margin-top: 1.5em;
+}
+
+.contact-info6 a {
+    color: var(--color-black);
+}
+
+.contact-info6 a:hover {
+    color: var(--color-hover-link);
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+    .contact-info6 {
+        padding: 0 var(--padding-left-mobile);
+        gap: 1.5em;
+    }
+}
+
+@media(max-width: 47em) {
+
+    .contact-info6 {
+        gap: 1em;
+    }
+
+    .contact-info6 h2 {
+        font-size: 1.8rem;
+    }
+}
+
+@media(max-width: 40em) {
+
+    .contact-info6 {
+        margin: 0;
+        padding: 0;
+        gap: 0;
+    }
+}
+
+@media(max-width: 36.25em) {
+    .contact-info6 {
+        flex-direction: column;
+    }
+
+    .contact-text-6 {
+        width: 100%;
+        padding: 2.5em 2.5em 4em;
+    }
+    
+    .contact-img-6 {
+        width: 100%;
+    }
+
+    .c-item6 {
+        min-height: 20em;
+    }
+}
+
+/* 
+6.3 Kontaktformulär
+******************************
+*/
+
+.contact-form6 {
+    border-top: var(--top-border);
+    width: 100%;
+    background-color: var(--color-blue);
+    margin-bottom: 2em;
+}
+
+.contact-form-content {
+    width: 100%;
+    padding-bottom: 4em;
+}
+
+.contact-form-text-6 {
+    text-align: center;
+    padding: 3em 0;
+    font-family: var(--font-family-serif);
+}
+
+.contact-form6 h2 {
+    font-size: 2rem;
+}
+
+#contact-form ul {
+    list-style: none;
+    width: 35em;
+    margin: 0 auto;
+}
+
+.input-li {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family-sans);
+}
+
+#contact-form input, #contact-form textarea {
+    font-family: var(--font-family-sans);
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 0;
+    padding: 0.7em;
+    margin-bottom: 1.5em;
+}
+
+#contact-form input:focus, #contact-form textarea:focus {
+    background-color: #fdfedc;
+}
+
+#contact-form label {
+    font-family: var(--font-family-sans);
+}
+
+#conditions-checkbox {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1em;
+
+    margin-bottom: 3em;
+}
+
+#conditions-checkbox label {
+    font-size: 1rem;
+    font-family: var(--font-family-serif);
+    line-height: 1.4;
+}
+
+#contact-form input[type='checkbox'] {
+    padding: 0.7em;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+#contact-form input[type='submit'] {
+    padding: 0.7em 2em;
+    color: var(--color-white);
+    background-color: var(--color-black);
+    font-weight: 600;
+    border: none;
+    border-radius: 0;
+    width: 30%;
+}
+
+#contact-form input[type='submit']:hover {
+    cursor: pointer;
+    background-color: var(--color-hover-black);
+}
+
+#submit-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+/* MEDIA QUERIES */
+@media(max-width: 70em) {
+    .contact-form6 {
+        margin: 0;
+        padding: var(--padding-left-mobile);
+    }
+
+    #contact-form input[type='submit'] {
+        width: 40%;
+    }
+
+    .contact-form-text-6 {
+        padding: 2.5em 3em;
+    }
+
+    .contact-form-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+@media(max-width: 50em) {
+    #contact-form ul {
+        width: 85%;
+    }
+
+    .contact-form-text-6 h2 {
+        font-size: 1.8rem;
+    }
+
+    .contact-form-text-6 p {
+        font-size: 1rem;
+    }
+  
+    .contact-form-content {
+        padding-bottom: 3em;
+    }
+
+    #contact-form input[type='submit'] {
+        width: 50%;
+    }
+}
+
+@media(max-width: 36.25em) {
+    .contact-form6 {
+        margin: 0;
+        padding: 0;
+    }
+}
+

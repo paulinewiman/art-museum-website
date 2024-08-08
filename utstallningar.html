@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--LÄNKAR-->
+
+    <!--Länk till extern css-->
+    <link rel="stylesheet" href="main.css">
+
+    <!--Länk till Googles Material Symbols formatmall, för ikoner-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0">
+
+    <!--FAVICON-->
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+
+    <!--LÄNK TILL TYPSNITT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet"> 
+    
+    <title>Utställningar | Konstmuséet</title>
+</head>
+<body>
+
+    <!--GLOBAL MENY-->
+    <header>
+        <nav class="primary-nav">
+            <div class="top-nav">
+
+                <!--LOGOTYP-->
+                <a href="index.html" id="logo">Konstmuséet</a>
+
+
+                <!--Meny-knapp (för mindre skärmar)-->
+                <button class="menu-button">
+                    <span>Meny</span>
+
+                    <!--Meny-ikoner-->
+                    <span class="material-symbols-outlined hamburger-icon">menu</span>
+                    <span class="material-symbols-outlined close-icon">close</span>
+                </button>
+            </div>
+
+            <!--Meny-länkar-->
+            <ul class="menu-bar">
+                <li class="nav-item"><a href="index.html" class="nav-link">Hem</a></li>
+                <li class="nav-item"><a href="besok-oss.html" class="nav-link">Besök oss</a></li>
+                <li class="nav-item"><a href="#" class="active-link nav-link">Utställningar</a></li>
+                <li class="nav-item"><a href="hitta-hit.html" class="nav-link">Hitta hit</a></li>
+                <li class="nav-item"><a href="om-museet.html" class="nav-link">Om muséet</a></li>
+                <li class="nav-item"><a href="kontakt.html" class="nav-link">Kontakt</a></li>
+            </ul>
+            </nav>
+    </header>
+
+    <!--BREADCRUMBS-->
+    <div class="breadcrumbs">
+        <nav id="breadcrumbs">
+            <ol>
+                <li class="breadcrumb"><a href="index.html" class="start-link">Hem</a></li>
+                <li class="breadcrumb"><a href="#">Utställningar</a></li>
+            </ol>
+        </nav>
+    </div>
+
+    <!--HUVUDINNEHÅLL-->
+    <main>
+        <!-- 3.1 HERO-section (Den översta delen på sidan)-->
+        <section class="hero-section3">
+            <div class="hero-section3-content">
+                <div class="hero-text-3">
+                    <h1>Våra utställningar</h1>
+                    <p>
+                        I motsättning till vad många tror, är inte Lorem Ipsum slumpvisa ord. Det har sina rötter i ett stycke klassiskt litteratur på latin från 45 år före år 0, och är alltså över 2000 år gammalt. 
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 3.2 Pågående utställningar-->
+        <section class="current-exhibitions3">
+            <h2>Pågående</h2>
+    
+            <!--Flex-container-->
+            <div class="current-exhibitions-container-3">
+                <section class="card" id="antikens-aterfodelse">
+                    <img src="images/bild8.jpg" alt="En skulptur">
+    
+                    <div class="card-text">
+                        <span>1 april - 20 december</span>
+                        <h3>Antikens återfödelse</h3>
+                        <p>
+                            Upplev muséet på en guidad visning! Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. 
+                        </p>
+                    </div>
+    
+                </section>
+                <section class="card" id="landscape-painting">
+                    <img src="images/bild9.jpg" alt="Gammal målning av ett hus bland gröna träd">
+    
+                    <div class="card-text">
+                        <span>15 Mars - 30 November</span>
+                        <h3>Landskapsmåleri</h3>
+                        <p>
+                            Lorem ipsum har inte bara överlevt 5 århundraden, utan även övergången till elektronisk typografi. 
+                        </p>
+                    </div>
+    
+                </section>
+                <section class="card" id="museets-samling">
+                    <img src="images/bild10.jpg" alt="Färgglad målning av kvinna som läser">
+    
+                    <div class="card-text">
+                        <span>Permanent</span>
+                        <h3>Muséets samling</h3>
+                        <p>
+                            Det är ett välkänt faktum att läsare distraheras av läsbar text på en sida när man skall studera layouten. 
+                        </p>
+                    </div>
+    
+                </section>
+                
+            </div>
+        </section>
+    
+        <!-- 3.3 Kommande utställningar-->
+        <section class="coming-exhibitions3">
+            <h2>Kommande</h2>
+    
+            <!--Flex-container-->
+            <div class="coming-exhibitions-container-3">
+                <section class="card" id="portraits">
+                    <img src="images/bild11.jpg" alt="Porträtt av en kvinna med vit sjal som stirrar upp">
+    
+                    <div class="card-text">
+                        <span>31 december - 8 maj</span>
+                        <h3>Porträtt i alla tider</h3>
+                        <p>
+                            Upplev muséet på en guidad visning! Lorem Ipsum är en utfyllnadstext från tryck- och förlagsindustrin. 
+                        </p>
+                    </div>
+    
+                </section>
+                <section class="card" id="stilleben">
+                    <img src="images/bild12.jpg" alt="Stilleben med frukter och grönsaker">
+    
+                    <div class="card-text">
+                        <span>20 september - 31 december</span>
+                        <h3>Stilleben</h3>
+                        <p>
+                            Lorem ipsum har inte bara överlevt 5 århundraden, utan även övergången till elektronisk typografi. 
+                        </p>
+                    </div>
+    
+                </section>
+                <section class="card" id="renaissance">
+                    <img src="images/bild13.jpg" alt="Takmålning med änglar">
+    
+                    <div class="card-text">
+                        <span>1 juni - 11 oktober</span>
+                        <h3>Renässansen</h3>
+                        <p>
+                            Det är ett välkänt faktum att läsare distraheras av läsbar text på en sida när man skall studera layouten. 
+                        </p>
+                    </div>
+    
+                </section>
+            </div>
+        </section>
+
+    </main>
+
+    <!--Prenumerera på muséets nyhetsbrev-sektion-->
+    <section class="news-letter">
+        
+        <h3>Prenumerera på vårt nyhetsbrev</h3>
+
+        <!--Formulär för att prenumerera på nyhetsbrev-->
+        <form action="#">
+            <ul>
+                <li class="checkbox-container">
+                    <input type="checkbox" name="wantNewsLetter" id="wantNewsLetter">
+                    <label for="wantNewsLetter" id="checkbox-label">
+                        Jag samtycker till att Konstmuséet lagrar min email och behandlar mina personuppgifter
+                    </label>
+                </li>
+                <li>
+                    <input type="email" name="newsletter-email" id="newsletter-email" placeholder="Din epostadress">
+                </li>
+                <li>
+                    <input type="submit" value="Prenumerera">
+                </li>
+            </ul>
+        </form>
+    </section>
+
+    <!--SIDFOT-->
+    <footer>
+
+        <!--Flexbox-container för att kunna skapa kolumner-->
+        <div class="footer-container">
+
+            <!--Kolumn 1: Logotyp och cookie-länkar-->
+            <div class="footer-item" id="footer-item1">
+                <a href="index.html" id="footer-logo">KONSTMUSÉET</a>
+
+                <nav id="tertiary-nav">
+                    <ul class="cookie-links">
+                        <li><a href="#">Kontakta oss</a></li>
+                        <li><a href="#">Cookiepolicy</a></li>
+                        <li><a href="#">Hantera cookies</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!--Kolumn 2: Kontaktuppgifter-->
+            <div class="footer-item" id="footer-item2">
+                <div class="footer-address">
+                    <h2>KONSTMUSÉET</h2>
+                    <p id="address">Kungliga trädgården 213 123 45 Stockholm</p>
+
+                    <ul class="footer-contact-links">
+                        <li><a href="mailto:info@konstmuseet.se">info@konstmuseet.se</a></li>
+                        <li><a href="tel:+461234506789">+46 123 450 67 89</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social-links">
+                    <h2>FÖLJ OSS</h2>
+                        <ul id="social-links">
+                            <li class="social-link">
+                                <img src="images/icons8-instagram.svg" alt="Instagram Logo">
+                                <a href="#">Instagram</a>
+                            </li>
+                            <li class="social-link">
+                                <img src="images/icons8-facebook.svg" alt="Facebook Logo">
+                                <a href="#">Facebook</a>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+
+            <!--Kolumn 3: Sekundär meny-->
+            <div class="footer-item" id="footer-item3">
+                <h2>MENY</h2>
+                <nav id="secondary-nav">
+                    <ul>
+                        <li><a href="index.html">Hem</a></li>
+                        <li><a href="besok-oss.html">Besök oss</a></li>
+                        <li><a href="#">Utställningar</a></li>
+                        <li><a href="hitta-hit.html">Hitta hit</a></li>
+                        <li><a href="om-museet.html">Om muséet</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <!--COPYRIGHT och länkar till bilder och ikoner-->
+        <div class="copyright-credit">
+            
+                <span>&copy; Copyright Konstmuséet 2022 </span>
+                <ul class="credits">
+                <li>
+                    <span>Photos from <a href="https://unsplash.com/">unsplash.com</a></span>
+                </li>
+                <li>
+                    <a target="_blank" href="https://icons8.com/icon/118466/facebook">Facebook</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://icons8.com/icon/59813/instagram">Instagram</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+                </li>
+            </ul>
+        </div>
+
+    </footer>
+
+    <!--Länk till extern javascript-->
+    <script src="script.js"></script>
+</body>
+</html>
